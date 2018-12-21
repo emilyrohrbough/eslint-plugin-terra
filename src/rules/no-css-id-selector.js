@@ -12,7 +12,7 @@ module.exports = {
     fixable: "code",
 
     messages: {
-      message: "Driver commands may not accept css id selectors. Expected '{{ received }}' to be '{{expected}}'.",
+      message: "Driver commands may not accept css id selectors. Expected '{{ received }}' to be {{expected}}.",
     }
   },
 
@@ -36,9 +36,9 @@ module.exports = {
       'themeCombinationOfCustomProperties'
     ];
 
-    const createFix = (node, expected) => {
-      fixer => fixer.replaceText(node, expected);
-    };
+    const createFix = (node, expected) => (
+      fixer => fixer.replaceText(node, expected)
+    );
 
     const expectedID = (received) => {
       const selectors = received.split(' ');
@@ -50,7 +50,7 @@ module.exports = {
           selectors[index] = parsed.join(':');
         }
       });
-      return selectors.join(' ');
+      return `'${selectors.join(' ')}'`;
     };
     
     const validateID = (node) => {
@@ -62,21 +62,14 @@ module.exports = {
             node: node,
             messageId: "message",
             data: { received, expected },
-            // fix: createFix(node, expected)
+            fix: createFix(node, expected)
           });
         }
       }
     }
 
     return {
-      // ObjectExpression: function (node) {
-      //   node.properties.find(property => {
-      //     if (property.key && terraTestSelectors.includes(property.key.name)) {
-      //       validateID(property.value);
-      //     }
-      //   })
-      // },
-      "MemberExpression[object.name='browser'][node.parent.arguments.length > 0]": function (node) {
+      "MemberExpression[object.name='browser'][parent.arguments.length > 0]": function (node) {
         if (!commandsToIgnore.includes(node.property.name)) {
             node.parent.arguments.find(arg => {
               validateID(arg);
@@ -98,14 +91,6 @@ module.exports = {
           });
         }
       },
-      // 'CallExpression': function (node) {
-      //   // console.log(node.object)
-      //   if (node.callee.object && (node.callee.object.name === 'browser' && node.callee.property.name !== 'url') || node.callee.property && terraTestHelpers.includes(node.callee.property.name)) {
-      //     node.arguments.find(arg => {
-      //       validateID(arg);
-      //     })
-      //   }
-      // }
     };
   }
 };
