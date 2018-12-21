@@ -41,6 +41,10 @@ module.exports = {
     );
 
     const expectedID = (received) => {
+      if (!received.includes('#')) {
+        return;
+      }
+
       const selectors = received.split(' ');
       selectors.forEach((selector, index) => {
         if (selector.startsWith('#')) {
