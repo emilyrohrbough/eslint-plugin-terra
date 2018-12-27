@@ -23,6 +23,9 @@
     "clean": "rimraf node_modules",
     "clean:install": "npm run clean && npm install",
     "danger": "danger ci",
+    "test": "npm run test:lint && npm run test:unit",
+    "test:lint": "eslint --report-unused-disable-directives .",
+    "test:unit": "mocha tests --recursive --reporter dot",
     "release:major": "node scripts/release/release.js major",
     "release:minor": "node scripts/release/release.js minor",
     "release:patch": "node scripts/release/release.js patch"
@@ -31,9 +34,23 @@
     "eslint": "^5.0.0"
   },
   "devDependencies": {
+    "chai": "^4.2.0",
     "danger": "^3.7.14",
     "eslint": "^5.0.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "mocha": "^5.2.0",
     "rimraf": "^2.6.1",
     "shelljs": "^0.8.2"
+  },
+  "eslintConfig": {
+    "extends": "airbnb-base",
+    "rules": {
+      "max-len": "off"
+    },
+    "overrides": [{
+      "files": [ "tests/rules/*.js" ],
+      "env": { "mocha": true }
+    }]
   }
 }
