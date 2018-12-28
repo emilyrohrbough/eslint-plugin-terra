@@ -1,5 +1,4 @@
 # disallow the use of css id selectors in webdriver commands (no-css-id-selector-syntax)
-JsonWireProtocol allo
 
 The `--fix` option on the command line can automatically fix the problems reported by this rule.
 

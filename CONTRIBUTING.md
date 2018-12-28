@@ -20,6 +20,7 @@ Thanks.
 * Read [how to properly contribute to open source projects on Github][2].
 * Fork the project.
 * Use a feature branch.
+* If writing a new rule, please review the [Developer's Guide](docs/DevelopersGuide.md)
 * Write [good commit messages][3].
 * Use the same coding conventions as the rest of the project.
 * Commit locally and push to your fork until you are happy with your contribution.
