@@ -37,14 +37,14 @@ module.exports = {
     'terra',
   ],
   rules: {
-    'terra/no-css-selector-syntax': 'error',
+    'terra/no-css-id-selector': 'error',
   },
 };
 
 ```
 
 ## Rule Documentation
-- [no-css-selector-syntax](docs/no-css-selector-syntax.md) - disallow the use of css id selectors in webdriver commands
+- [no-css-id-selector](docs/no-css-id-selector.md) - disallow the use of css id selectors in webdriver commands
 
 ## Versioning
 
