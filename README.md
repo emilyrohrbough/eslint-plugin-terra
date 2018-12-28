@@ -18,11 +18,11 @@
 Terra's customized ESLint rules for their UI library and build tools.
 
 Rules:
-- no-css-selector-syntax
+- [no-css-selector-syntax](docs/no-css-selector-syntax.md)
 
 ## What is Eslist?
 
-[ESlint](https://eslint.org/) is a pluggable linting utility for JavaScript and JSX.
+[ESlint](https://eslint.org/) is a pluggable linting utility for JavaScript.
 
 ## Installation
 

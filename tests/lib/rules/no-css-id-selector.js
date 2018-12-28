@@ -1,5 +1,5 @@
 const { RuleTester } = require('eslint');
-const rule = require('../../../src/rules/no-css-id-selector');
+const rule = require('../../../lib/rules/no-css-id-selector');
 
 const ruleTester = new RuleTester();
 

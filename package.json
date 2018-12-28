@@ -2,14 +2,14 @@
   "name": "eslint-plugin-terra",
   "version": "0.0.0",
   "description": "Terra's Eslint Plugin",
-  "main": "src/index.js",
+  "main": "lib/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cerner/eslint-plugin-terra"
   },
   "keywords": [
     "eslint",
-    "eslint-plugin",
+    "eslintplugin",
     "Cerner",
     "Terra"
   ],
