@@ -82,6 +82,80 @@ ruleTester.run('no-css-id-selector for browser commands', rule, {
   ],
 });
 
+ruleTester.run('no-css-id-selector for $ element shortcut', rule, {
+  valid: [
+    '$("[id=test]");',
+    '$(".test");',
+    '$("div");',
+    '$("[id=test] > div");',
+    '$("svg > [id=test]");',
+    '$("[id=test]:first-child");',
+  ],
+  invalid: [
+    {
+      code: '$("#test");',
+      errors: [
+        { message: "Driver commands may not accept css id selectors. Expected '#test' to be '[id=test]'." },
+      ],
+    },
+    {
+      code: '$("#test > div");',
+      errors: [
+        { message: "Driver commands may not accept css id selectors. Expected '#test > div' to be '[id=test] > div'." },
+      ],
+    },
+    {
+      code: '$("#test > div > svg");',
+      errors: [
+        { message: "Driver commands may not accept css id selectors. Expected '#test > div > svg' to be '[id=test] > div > svg'." },
+      ],
+    },
+    {
+      code: '$("#test > #firstDiv > svg");',
+      errors: [
+        { message: "Driver commands may not accept css id selectors. Expected '#test > #firstDiv > svg' to be '[id=test] > [id=firstDiv] > svg'." },
+      ],
+    },
+  ],
+});
+
+ruleTester.run('no-css-id-selector for $$ element shortcut', rule, {
+  valid: [
+    '$$("[id=test]");',
+    '$$(".test");',
+    '$$("div");',
+    '$$("[id=test] > div");',
+    '$$("svg > [id=test]");',
+    '$$("[id=test]:first-child");',
+  ],
+  invalid: [
+    {
+      code: '$$("#test");',
+      errors: [
+        { message: "Driver commands may not accept css id selectors. Expected '#test' to be '[id=test]'." },
+      ],
+    },
+    {
+      code: '$$("#test > div");',
+      errors: [
+        { message: "Driver commands may not accept css id selectors. Expected '#test > div' to be '[id=test] > div'." },
+      ],
+    },
+    {
+      code: '$$("#test > div > svg");',
+      errors: [
+        { message: "Driver commands may not accept css id selectors. Expected '#test > div > svg' to be '[id=test] > div > svg'." },
+      ],
+    },
+    {
+      code: '$$("#test > #firstDiv > svg");',
+      errors: [
+        { message: "Driver commands may not accept css id selectors. Expected '#test > #firstDiv > svg' to be '[id=test] > [id=firstDiv] > svg'." },
+      ],
+    },
+  ],
+});
+
 ruleTester.run('no-css-id-selector for bounded browser commands', rule, {
   valid: [
     'browser.click.bind(browser, "[class*=button]")',
