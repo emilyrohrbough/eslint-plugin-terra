@@ -15,14 +15,7 @@
 [![devDependencies status](https://badgen.net/david/dev/cerner/eslint-plugin-terra)](https://david-dm.org/cerner/eslint-plugin-terra?type=dev)
 
 
-Terra's customized ESLint rules for their UI library and build tools.
-
-Rules:
-- [no-css-selector-syntax](docs/no-css-selector-syntax.md)
-
-## What is Eslist?
-
-[ESlint](https://eslint.org/) is a pluggable linting utility for JavaScript.
+Custom ESLint rules for the [Terra UI library](https://engineering.cerner.com/terra-ui/).
 
 ## Installation
 
@@ -49,6 +42,9 @@ module.exports = {
 };
 
 ```
+
+## Rule Documentation
+- [no-css-selector-syntax](docs/no-css-selector-syntax.md) - disallow the use of css id selectors in webdriver commands
 
 ## Versioning
 
