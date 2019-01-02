@@ -1,21 +1,31 @@
 <!-- Logo -->
 <p align="center">
-  <img height="128" width="128" src="https://github.com/cerner/eslint-plugin-terra/raw/master/terra.png">
+  <img height="128" width="128" src="https://github.com/cerner/eslint-config-terra/raw/master/terra.png">
 </p>
 
 <!-- Name -->
 <h1 align="center">
-  Terra's Eslint Plugin
+  Terra Eslint Config
 </h1>
 
-[![NPM version](https://badgen.net/npm/v/eslint-plugin-terra)](https://www.npmjs.org/package/eslint-plugin-terra)
-[![License](https://badgen.net/github/license/cerner/eslint-plugin-terra)](https://github.com/cerner/eslint-plugin-terra/blob/master/LICENSE)
-[![Build Status](https://badgen.net/travis/cerner/eslint-plugin-terra)](https://travis-ci.org/cerner/eslint-plugin-terra)
-[![Dependencies status](https://badgen.net/david/dep/cerner/eslint-plugin-terra)](https://david-dm.org/cerner/eslint-plugin-terra)
-[![devDependencies status](https://badgen.net/david/dev/cerner/eslint-plugin-terra)](https://david-dm.org/cerner/eslint-plugin-terra?type=dev)
+[![NPM version](https://badgen.net/npm/v/eslint-config-terra)](https://www.npmjs.org/package/eslint-config-terra)
+[![License](https://badgen.net/github/license/cerner/eslint-config-terra)](https://github.com/cerner/eslint-config-terra/blob/master/LICENSE)
+[![Build Status](https://badgen.net/travis/cerner/eslint-config-terra)](https://travis-ci.org/cerner/eslint-config-terra)
+[![Dependencies status](https://badgen.net/david/dep/cerner/eslint-config-terra)](https://david-dm.org/cerner/eslint-config-terra)
+[![devDependencies status](https://badgen.net/david/dev/cerner/eslint-config-terra)](https://david-dm.org/cerner/eslint-config-terra?type=dev)
 
 
-Custom ESLint rules for the [Terra UI library](https://engineering.cerner.com/terra-ui/).
+Terra's sharable ESLint configuration for their UI library and build tools.
+
+Features:
+- extends the  [eslint-config-airbnb](https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb), which exports ESLint rules, including rules for ECMAScript 6+ and React.
+- checks syntax for targeted browsers support via the [eslint-plugin-compat](https://github.com/amilajack/eslint-plugin-compat). It is recommended to use Terra's targeted browsers which are specified by the [browserslist-config-terra](https://github.com/cerner/browserslist-config-terra) module.
+- defines the browser and jest environment
+- defines enzyme globals for `shallow`, `render` and `mount` for jest testing
+
+## What is Eslist?
+
+[ESlint](https://eslint.org/) is a pluggable linting utility for JavaScript and JSX.
 
 ## Installation
 
@@ -23,32 +33,29 @@ Install the module
 
 ```shell
 $ npm install eslint --save-dev
-$ npm install eslint-plugin-terra --save-dev
+$ npm install eslint-config-terra --save-dev
 ```
 
 ## Usage
-First, include the plugin in your eslint configuration by adding `terra` to the plugin list. Then, you can define the terra-plugin rules by listing `terra/rule-to-configure` under the rules key.
+First, include the configuration defined by `eslint-config-terra` via the  [extends](https://eslint.org/docs/user-guide/configuring#extending-configuration-files) property.
 
+Then, [define the browsers](https://github.com/amilajack/eslint-plugin-compat#targeting-browsers) for the `eslint-plugin-compat` plugin to target by add the browsers list configuration in your package.json through the `browserslist` key.
 
-### eslint.config.js
-```js
-module.exports = {
-  plugins: [
-    'terra',
+### package.json
+```json
+{
+  "browserslist": [
+    "extends browserslist-config-terra"
   ],
-  rules: {
-    'terra/no-css-id-selector': 'error',
+  "eslintConfig": {
+    "extends": "terra"
   },
-};
-
+}
 ```
-
-## Rule Documentation
-- [no-css-id-selector](docs/no-css-id-selector.md) - disallow the use of css id selectors in webdriver commands
 
 ## Versioning
 
-eslint-plugin-terra is considered to be stable and will follow [SemVer](http://semver.org/) for versioning.
+eslint-config-terra is considered to be stable and will follow [SemVer](http://semver.org/) for versioning.
 1. MAJOR versions represent breaking changes
 2. MINOR versions represent added functionality in a backwards-compatible manner
 3. PATCH versions represent backwards-compatible bug fixes
